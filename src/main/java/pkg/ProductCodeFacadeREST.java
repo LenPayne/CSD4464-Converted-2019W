@@ -8,6 +8,7 @@ package pkg;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
@@ -25,11 +26,11 @@ import javax.ws.rs.Produces;
 @Stateless
 @Path("productcode")
 public class ProductCodeFacadeREST extends AbstractFacade<ProductCode> {
-    @PersistenceContext(unitName = "ca.lambtoncollege_CSD4464-Converted-2019W_war_1.0-SNAPSHOTPU")
     private EntityManager em;
 
     public ProductCodeFacadeREST() {
-        super(ProductCode.class);
+        super(ProductCode.class);        
+        em = Persistence.createEntityManagerFactory("ca.lambtoncollege_CSD4464-Converted-2019W_war_1.0-SNAPSHOTPU").createEntityManager();
     }
 
     @POST
@@ -84,5 +85,5 @@ public class ProductCodeFacadeREST extends AbstractFacade<ProductCode> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
 }
